@@ -3,7 +3,7 @@
 # Setup
 pkg update -y
 pkg upgrade -y
-pkg install libjansson wget nano git screen jq openssh -y
+pkg install libjansson wget nano git screen jq openssh iproute2 -y
 
 if [ ! -d ~/.ssh ]
 then
