@@ -23,19 +23,61 @@ fi
 cd ~/ccminer
 
 
-GITHUB_RELEASE_JSON=$(curl --silent "https://api.github.com/repos/Oink70/Android-Mining/releases?per_page=1" | jq -c '[.[] | del (.body)]')
-GITHUB_DOWNLOAD_URL=$(echo $GITHUB_RELEASE_JSON | jq -r ".[0].assets | .[] | .browser_download_url")
-GITHUB_DOWNLOAD_NAME=$(echo $GITHUB_RELEASE_JSON | jq -r ".[0].assets | .[] | .name")
+GITHUB_RELEASE_JSON=$(curl --silent "https://api.github.com/repos/Oink70/CCminer-ARM-optimized/releases?per_page=1" | jq -c '[.[] | del (.body)]')
+GITHUB_DOWNLOAD_URL=$(echo $GITHUB_RELEASE_JSON | jq -r ".[0].assets[0].browser_download_url")
+GITHUB_DOWNLOAD_NAME=$(echo $GITHUB_RELEASE_JSON | jq -r ".[0].assets[0].name")
 
 echo "Downloading latest release: $GITHUB_DOWNLOAD_NAME"
 
-wget ${GITHUB_DOWNLOAD_URL} -O ~/ccminer/ccminer
-wget https://raw.githubusercontent.com/TheRetroMike/VerusCliMining/main/config.json -O ~/ccminer/config.json
+wget ${GITHUB_DOWNLOAD_URL} -P ~/ccminer
+
+if [ -f ~/ccminer/config.json ]
+then
+  INPUT=
+  COUNTER=0
+  while [ "$INPUT" != "y" ] && [ "$INPUT" != "n" ] && [ "$COUNTER" <= "10" ]
+  do
+    printf '"~/ccminer/config.json" already exists. Do you want to overwrite? (y/n) '
+    read INPUT
+    if [ "$INPUT" = "y" ]
+    then
+      echo "\noverwriting current \"~/ccminer/config.json\"\n"
+      rm ~/ccminer/config.json
+    elif [ "$INPUT" = "n" ] && [ "$COUNTER" = "10" ]
+    then
+      echo "saving as \"~/ccminer/config.json.#\""
+    else
+      echo 'Invalid input. Please answer with "y" or "n".\n'
+      ((COUNTER++))
+    fi
+  done
+fi
+wget https://raw.githubusercontent.com/Oink70/Android-Mining/main/config.json -P ~/ccminer
+
+if [ -f ~/ccminer/ccminer ]
+then
+  mv ~/ccminer/ccminer ~/ccminer/ccminer_old
+fi
+mv ~/ccminer/${GITHUB_DOWNLOAD_NAME} ~/ccminer/ccminer
 chmod +x ~/ccminer/ccminer
 
 cat << EOF > ~/ccminer/start.sh
 #!/bin/sh
-~/ccminer/ccminer -c ~/ccminer/config.json
+#exit existing screens with the name CCminer
+screen -S CCminer -X quit 1>/dev/null 2>&1
+#wipe any existing (dead) screens)
+screen -wipe 1>/dev/null 2>&1
+#create new disconnected session CCminer
+screen -dmS CCminer 1>/dev/null 2>&1
+#run the miner
+screen -S CCminer -X stuff "~/ccminer/ccminer -c ~/ccminer/config.json\n" 1>/dev/null 2>&1
+printf '\nMining started.\n'
+printf '===============\n'
+printf '\nManual:\n'
+printf 'start: ~/.ccminer/start.sh\n'
+printf 'stop: screen -X -S CCminer quit\n'
+printf '\nmonitor mining: screen -x CCminer\n'
+printf "exit monitor: 'CTRL-a' followed by 'd'\n\n"
 EOF
 chmod +x start.sh
 
