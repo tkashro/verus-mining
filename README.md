@@ -1,12 +1,7 @@
 # Android Mining
-Quick installation of mining on Android Phones
-
-## No support
-- Although the installation procedure is considered doable for people that have zero to little Linux knowledge, I do **not** provide any support to users that that mess up as a result of lack of knowledge.
-- Reading is an dying art. There's no instruction video for people that can't follow instructions step-by-step.
+Quick installation and setup of ccminer on Android Phones.
 
 ## Prerequisites
-- Some fundamental Linux knowledge is *required*. (do an online coarse!)
 - Knowledge about how to operate Linux *screen* is a must.
 - Knowledge on *ssh* and *scp* is highly recommended.
 - Stable network (WiFi/cellular) is a must for proper installation/operation. Be prepared to troubleshoot and fix them yourself.
@@ -16,6 +11,7 @@ Quick installation of mining on Android Phones
 - select Ubuntu in Userland and supply your login details.
 - choose SSH
 - wait for it to install, enter Ubuntu and log into your account
+
 ```bash
 lscpu
 ```
@@ -47,7 +43,6 @@ Host Pixel2XL01
 Starting the miner:
 `~/ccminer/start.sh`
 
-
 ## Github cloning and customizing
 1. clone this repo to your own github account
 2. change the URL on line 14 of the README.md to reflect your own account
@@ -57,4 +52,4 @@ Starting the miner:
 6. optional: change the lines 20-21 of your `config.json` to your own LAN IP range.
 
 ## Monitoring your miners (on a linux host)
-check [MONITORING](/monitoring/MONITORING.md).
+[MONITORING](/monitoring/MONITORING.md).
