@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# Check if the architecture indicates 64-bit
+arch=$(uname -m)
+if [[ "$arch" == *64* ]]; then
+    echo "System Architecture: $arch"
+else
+    echo "The system architecture is NOT 64-bit. Aborting."
+    exit 1
+fi
+
 # Setup
 pkg update -y
 pkg upgrade -y
