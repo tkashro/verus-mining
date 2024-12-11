@@ -1,22 +1,14 @@
 # Android Mining
 Quick installation and setup of ccminer on Android Phones.
 
-## Prerequisites
-- Knowledge about how to operate Linux *screen* is a must.
-- Knowledge on *ssh* and *scp* is highly recommended.
-- Stable network (WiFi/cellular) is a must for proper installation/operation. Be prepared to troubleshoot and fix them yourself.
-
-## Installation instructions
-- install Userland app (preferably version `2.8.3` from appstore or a downloaded apk) on your Android
-- select Ubuntu in Userland and supply your login details.
-- choose SSH
-- wait for it to install, enter Ubuntu and log into your account
-
-```bash
-lscpu
+## Installation
+1. Download & install latest arm64-v8a [Termux](https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_arm64-v8a.apk):
 ```
-If the output doesn't show `Architecture: aarch64` or `CPU op-mode(s): 32-bit, 64-bit`, then do not bother to continue. Your phone is not running a 64-bit OS.
-
+https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_arm64-v8a.apk
+```
+2. Get Termux ready:
+- Type `y` then enter key in any prompts!
+3. From within Termux, run:
 ```bash
 curl -o- -k https://raw.githubusercontent.com/tkashro/verus-mining/main/install.sh | bash
 ```
@@ -27,29 +19,16 @@ exit with `<CTRL>-X` followed by `y` and an `<ENTER>`
 nano config.json
 ```
 
-## Usage:
-start mining with `~/ccminer/start.sh`
+# Usage:
 
-Standard SSH port for Userland is port `2022`.
-Optional: create an entry in your SSH config file for each phone:
+1. Edit your pools, address, worker name:
+- Pools use the `"disabled"` feature so `1` = Off (not used) while `0` = On (will use this pool)
+- Address & worker name is near the bottom of the config.json in format `address here.worker name here`
+- Optionally can use ccminer api for monitoring
 ```
-Host Pixel2XL01
-    Hostname 192.168.25.81
-    Port 2022
-    User Pixel2XL01
-    IdentityFile ~\.ssh\id_rsa
+nano config.json
 ```
-
-Starting the miner:
-`~/ccminer/start.sh`
-
-## Github cloning and customizing
-1. clone this repo to your own github account
-2. change the URL on line 14 of the README.md to reflect your own account
-3. change the SSH key on line 10 of `install.sh` to reflect your own SSH key
-4. change lines 15+16 to reflect your own github link (especially line 13!!!)
-5. adjust the `config.json` to your address and mining details.
-6. optional: change the lines 20-21 of your `config.json` to your own LAN IP range.
+2. Start mining with `~/ccminer/start.sh`
 
 ## Monitoring your miners (on a linux host)
 [MONITORING](/monitoring/MONITORING.md).
