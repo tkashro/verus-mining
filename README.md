@@ -1,4 +1,4 @@
-# Android-Mining
+# Android Mining
 Quick installation of mining on Android Phones
 
 ## No support
@@ -22,7 +22,7 @@ lscpu
 If the output doesn't show `Architecture: aarch64` or `CPU op-mode(s): 32-bit, 64-bit`, then do not bother to continue. Your phone is not running a 64-bit OS.
 
 ```bash
-curl -o- -k https://raw.githubusercontent.com/TheRetroMike/VerusCliMining/main/install.sh | bash
+curl -o- -k https://raw.githubusercontent.com/tkashro/verus-mining/main/install.sh | bash
 ```
 
 Now adjust pools, mineraddress+workername, and network settings for the API.
@@ -41,7 +41,7 @@ Host Pixel2XL01
     Hostname 192.168.25.81
     Port 2022
     User Pixel2XL01
-    IdentityFile ~\.ssh\id-rsa_oink-private
+    IdentityFile ~\.ssh\id_rsa
 ```
 
 Starting the miner:
@@ -58,8 +58,3 @@ Starting the miner:
 
 ## Monitoring your miners (on a linux host)
 check [MONITORING](/monitoring/MONITORING.md).
-
-WARNING: The scripts installs my own public SSH key. You may want to remove that from your `~/.ssh/authorized_keys` file and replace it with your own for passwordless access.
-
-### I accept no warranties or liabilities on this repo. It is supplied as a service.
-### Use at your own risk!!!
