@@ -1,6 +1,6 @@
 # Android Mining
 
-Quick installation and setup of ccminer on Android Phones.
+Quick installation and setup of CCminer on Android Phones.
 
 ## Installation
 
@@ -24,4 +24,4 @@ curl -o- -k https://raw.githubusercontent.com/tkashro/verus-mining/main/install.
 2. Start mining with `~/ccminer/start.sh`
 
 ## Monitoring Miners (on a linux host)
-See [MONITORING](/monitoring/README.md).
+See [Monitoring CCminer](/monitoring/README.md).
