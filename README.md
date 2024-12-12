@@ -24,4 +24,4 @@ curl -o- -k https://raw.githubusercontent.com/tkashro/verus-mining/main/install.
 2. Start mining with `~/ccminer/start.sh`
 
 ## Monitoring Miners (on a linux host)
-See [MONITORING](/monitoring/MONITORING.md).
+See [MONITORING](/monitoring/README.md).
