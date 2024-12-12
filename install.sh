@@ -63,11 +63,6 @@ fi
 
 wget https://raw.githubusercontent.com/tkashro/verus-mining/refs/heads/master/config.json -P ~/ccminer
 
-if [ -f ~/ccminer/ccminer ]
-then
-  mv ~/ccminer/ccminer ~/ccminer/ccminer_old
-fi
-
 mv ~/ccminer/${GITHUB_DOWNLOAD_NAME} ~/ccminer/ccminer
 chmod +x ~/ccminer/ccminer
 
