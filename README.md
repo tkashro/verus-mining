@@ -12,7 +12,7 @@ https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.11
 3. Launch Termux:
 4. Run the following command:
 ```bash
-curl -o- -k https://raw.githubusercontent.com/tkashro/verus-mining/main/install.sh | bash
+curl -o- -k https://raw.githubusercontent.com/tkashro/verus-mining/master/install.sh | bash
 ```
 
 ## Usage
