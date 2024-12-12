@@ -18,7 +18,7 @@ https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.11
 curl -o- -k https://raw.githubusercontent.com/tkashro/verus-mining/main/install.sh | bash
 ```
 
-# Usage:
+## Usage
 
 1. Modify `config.json`:
 
