@@ -60,6 +60,3 @@ WAIT       # time the miner is currently waiting for the pool to respond (usuall
 UPTIME     # amount of seconds the miner is running since last start
 TS         # current time in linux EPOCH format
 ```
-
-### I accept no warranties or liabilities on this repo. It is supplied as a service.
-### Use at your own risk!!!
